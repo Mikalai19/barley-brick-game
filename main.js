@@ -103,11 +103,11 @@ let drawTag = function (position, val) {   // create a function for square posit
 }
 //drawTag(15, 7);   // check position of square with value of 7
 
-for (let i = 0; i <= 15; i++) {   //iterate through to address all squares 
+for (let i = 0; i <= 15; i++) {   //iterate through to address all squares in corresponding position
     drawTag(i, arr15[i]);
 }
 
-let checkPlace = function (evX) {
+let checkPlace = function (evX) {     //return place's number in x coordinate  
     if (evX < 110) {
         return 1;
     }
@@ -127,13 +127,13 @@ let checkPlace = function (evX) {
 
 let clickPos;
 canvas.addEventListener('click', function (e) {
-    //console.log(e);  
-    // check the clientX and clientY in console (click's coordinates)
-    if (e.clientY < 110) {                    //check click coordinate
+    console.log(e);
+    // check the offsetX and offsetY in console (click's coordinates)
+    if (e.offsetY < 110) {                    //check click coordinate
         //console.log('row1');           // check click (must click row1 only)
         // find out what place being clicked for row1 (4 places in row)
         // covered all rows thats's why  i created a function above
-        let place = checkPlace(e.clientX);
+        let place = checkPlace(e.offsetX);
 
         switch (place) {
             case 1:
@@ -154,12 +154,12 @@ canvas.addEventListener('click', function (e) {
         }
     }
 
-    if (e.clientY > 110 && e.clientY < 210) {
-        let place = checkPlace(e.clientX)
+    if (e.offsetY > 110 && e.offsetY < 210) {
+        let place = checkPlace(e.offsetX)
 
         switch (place) {         // find out what place being clicked  for row2
             case 1:
-                clickPos = 4;
+                clickPos = 4;    // assign a position 4 
                 break;
 
             case 2:
@@ -176,8 +176,8 @@ canvas.addEventListener('click', function (e) {
         }
     }
 
-    if (e.clientY > 210 && e.clientY < 310) {
-        let place = checkPlace(e.clientX)
+    if (e.offsetY > 210 && e.offsetY < 310) {
+        let place = checkPlace(e.offsetX)
 
         switch (place) {                       // find out what place being clicked  for row3
             case 1:
@@ -198,8 +198,8 @@ canvas.addEventListener('click', function (e) {
         }
     }
 
-    if (e.clientY > 310 && e.clientY < 410) {
-        let place = checkPlace(e.clientX)
+    if (e.offsetY > 310 && e.offsetY < 410) {
+        let place = checkPlace(e.offsetX)
 
         switch (place) {                   // find out what place being clicked for row4
             case 1:
@@ -221,6 +221,47 @@ canvas.addEventListener('click', function (e) {
 
     }
 
-    console.log(clickPos);
+    //console.log(clickPos);
+
+    // need to find out if there is empty brick around clicked brick
+    // if so we need to swap them
+    //statement condition check if empty bricks located  on the ABOVE position of clicked brick
+    if (arr15[clickPos - 4] === 0) {
+        arr15[clickPos - 4] = arr15[clickPos];
+        arr15[clickPos] = 0;
+    }
+
+    for (let i = 0; i <= 15; i++) {   //iterate through to address all squares in corresponding position
+        drawTag(i, arr15[i]);
+    }
+    //statement condition check if empty bricks located  on the BOTTOM position of clicked brick
+    if (arr15[clickPos + 4] === 0) {
+        arr15[clickPos + 4] = arr15[clickPos];
+        arr15[clickPos] = 0;
+
+    }
+    for (let i = 0; i <= 15; i++) {   //iterate through to address all squares in corresponding position
+        drawTag(i, arr15[i]);
+    }
+    //statement condition check if empty bricks located  on the LEFT position of clicked brick
+    if (arr15[clickPos - 1] === 0) {
+        arr15[clickPos - 1] = arr15[clickPos];
+        arr15[clickPos] = 0;
+    }
+
+    for (let i = 0; i <= 15; i++) {   //iterate through to address all squares in corresponding position
+        drawTag(i, arr15[i]);
+    }
+    //statement condition check if empty bricks located  on the RIGHT position of clicked brick
+    if (arr15[clickPos + 1] === 0) {
+        arr15[clickPos + 1] = arr15[clickPos];
+        arr15[clickPos] = 0;
+    }
+
+    for (let i = 0; i <= 15; i++) {   //iterate through to address all squares in corresponding position
+        drawTag(i, arr15[i]);
+    }
 
 })
+
+

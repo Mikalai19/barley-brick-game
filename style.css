@@ -7,6 +7,12 @@ body {
   background-color: wheat;
 }
 
-#container {
-  margin: 0 auto;
+#container,
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
+#button-game {
+  margin: auto;
 }
