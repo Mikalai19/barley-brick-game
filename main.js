@@ -285,15 +285,15 @@ let countDownFunction =
         //count a gap between time set and today's day/time
         let distance = countDownDate - now;
         // count time for minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         let minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
         let seconds = Math.floor(distance % (1000 * 60) / (1000));
 
         //result display
         let show = document.querySelector('#timer');
-        show.innerHTML = minutes + ":" + seconds;
-        console.log(show);
+        show.innerHTML = (minutes - 27) + ":" + seconds;
+        console.log(minutes);
         // if timer ends
         if (distance < 0) {
             clearInterval(countDownFunction);
