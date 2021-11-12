@@ -4,6 +4,7 @@ let button = document.querySelector('.button-15');
 //console.log(button);
 
 button.addEventListener('click', function () {
+    refresh();
 
     //create arr of elements
     let arr15 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -275,27 +276,37 @@ button.addEventListener('click', function () {
 
 
 //create a timer
-let countDownDate = new Date('10:00').getTime();
+let countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
 //refresh timer each seconds
-let countDownFunction = setInterval(function () {
-    //this moment's time
-    let now = new Date().getTime();
-    //count a gap between time set and today's day/time
-    let distance = countDownDate - now;
-    // count time for minutes and seconds
-    let minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
-    let seconds = Math.floor(distance % (1000 * 60) / (1000));
+let countDownFunction =
+    setInterval(function () {
+        //this moment's time
+        let now = new Date().getTime();
+        //count a gap between time set and today's day/time
+        let distance = countDownDate - now;
+        // count time for minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
+        let seconds = Math.floor(distance % (1000 * 60) / (1000));
 
-    //result display
-    let show = document.querySelector('#timer');
-    show.innerHTML = minutes + seconds;
-    console.log(show);
-    // if timer ends
-    if (distance < 0) {
-        clearInterval(countDownFunction);
-        document.querySelector('#timer').innerHTML = "Time ended";
+        //result display
+        let show = document.querySelector('#timer');
+        show.innerHTML = minutes + ":" + seconds;
+        console.log(show);
+        // if timer ends
+        if (distance < 0) {
+            clearInterval(countDownFunction);
+            document.querySelector('#timer').innerHTML = "Game Over";
 
-    }
+        }
 
 
-}, 1000);
+    }, 1000);
+
+function refresh() {
+    clearInterval(setInterval);
+
+}
+
+
