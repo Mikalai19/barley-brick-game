@@ -11,3 +11,17 @@ Sam Loyd was the man who invented the 14-15 or Boss puzzle. This was a version w
 A little trick:
 
 ![Game image](https://personal.math.ubc.ca/~cass/courses/m308-02b/projects/grant/fifteen/15grid1d.jpg)
+
+Steps to creating a game:
+
+1. Canvas methodology
+2. Call getContent for accessing to drawing
+3. Create 15 array elements and sort them
+4. Draw a square, set a color and numbers
+5. Function to address position (upper-left angle)
+6. Address all squares by creating a loop
+7. Define OffsetX and OffsetY click coordinates
+8. Move a squares
+9. Create a "New Game" button
+10. CountDown timer creating (option to refresh by clicking on "New Game" button)
+11. Add a click sound
