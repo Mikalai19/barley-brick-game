@@ -4,7 +4,6 @@ let button = document.querySelector('.button-15');
 //console.log(button);
 
 button.addEventListener('click', function () {
-    refresh();
 
     //create arr of elements
     let arr15 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -269,44 +268,54 @@ button.addEventListener('click', function () {
 
     })
 
-
+    refresh();
 
 })
 
 
+let countDownEl = document.getElementById('countdown');
 
-//create a timer
-let countDownDate = new Date("Jan 5, 2022 15:37:25").getTime();
-//refresh timer each seconds
-let countDownFunction =
-    setInterval(function () {
-        //this moment's time
-        let now = new Date().getTime();
-        //count a gap between time set and today's day/time
-        let distance = countDownDate - now;
-        // count time for minutes and seconds
-        //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
-        let seconds = Math.floor(distance % (1000 * 60) / (1000));
+const startingMinutes = 10;
+let time = startingMinutes * 60;
 
-        //result display
-        let show = document.querySelector('#timer');
-        show.innerHTML = (minutes - 27) + ":" + seconds;
-        console.log(minutes);
-        // if timer ends
-        if (distance < 0) {
-            clearInterval(countDownFunction);
-            document.querySelector('#timer').innerHTML = "Game Over";
+function updateCountDown() {
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
 
-        }
+    if (seconds < 10) {
+        seconds = '0' + seconds;
+    }
 
+    countDownEl.innerHTML = minutes + ':' + seconds;
+    time--;
 
-    }, 1000);
-
-function refresh() {
-    clearInterval(setInterval);
+    if (time < 0) {
+        countDownEl.innerHTML = 'Game Over!!!';
+        countDownEl.style.color = 'red';
+    }
 
 }
+let clearT;
+//console.log(clearT);
+
+function refresh() {
+    clearInterval(clearT);
+    time = startingMinutes * 60;
+    clearT = setInterval(updateCountDown, 1000);
+}
+
+
+
+//Click sound 
+//let sound = new sound();
+
+//sound.src = "audio/Mouse-Click-00-m-FesliyanStudios.com.mp3";
+
+
+
+
+
+
+
 
 
