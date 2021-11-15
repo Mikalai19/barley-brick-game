@@ -1,3 +1,3 @@
 # barley-brick-game
 
-![Game image](barley-brick-game/barley-game_image.png)
+![Game image](bimg/15 puzzle game.png)
