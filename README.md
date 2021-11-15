@@ -7,3 +7,7 @@ Sam Loyd was the man who invented the 14-15 or Boss puzzle. This was a version w
 ![Game image](https://ece.uwaterloo.ca/~dwharder/aads/Algorithms/N_puzzles/images/puz2.png)
 
 ![Game image](bimg/15 puzzle game.png)
+
+How to play
+
+![Game image](http://thinkfun.com/wp-content/uploads/2015/09/fifteen-puzzle-StepsToPlay.jpg)
