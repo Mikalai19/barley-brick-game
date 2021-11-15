@@ -15,13 +15,67 @@ A little trick:
 Steps to creating a game:
 
 1. Canvas methodology
+
+let canvas = document.getElementById('canvas');
+let ctx = canvas.getContext('2d');
+
 2. Call getContent for accessing to drawing
+
+// create a black square:
+ctx.fillStyle = "black";  
+ctx.fillRect(x, y, 100, 100);
+
 3. Create 15 array elements and sort them
+
+let arr15 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+
 4. Draw a square, set a color and numbers
+
 5. Function to address position (upper-left angle)
+
+//in this case we pass coordinates x = 0; y= 0; means that position will be 0
+let drawTag = function (position, val) {  
+ switch (position) {  
+ case 0:  
+ drawSquare(0, 0, val)  
+ break;
+
 6. Address all squares by creating a loop
+
+for (let i = 0; i <= 15; i++) {  
+ drawTag(i, arr15[i]);
+}
+
 7. Define OffsetX and OffsetY click coordinates
+
+//return place's number in x coordinate
+let checkPlace = function (evX) {  
+ if (evX < 110) {
+return 1;
+}
+
 8. Move a squares
+
+if (arr15[clickPos - 4] === 0) {
+arr15[clickPos - 4] = arr15[clickPos];
+arr15[clickPos] = 0;
+}
+
 9. Create a "New Game" button
+
 10. CountDown timer creating (option to refresh by clicking on "New Game" button)
+
+const startingMinutes = 10;
+let time = startingMinutes \* 60;
+function updateCountDown() {
+const minutes = Math.floor(time / 60);
+let seconds = time % 60;
+
+    if (seconds < 10) {
+        seconds = '0' + seconds;
+    }
+
+    countDownEl.innerHTML = minutes + ':' + seconds;
+    time--;
+
 11. Add a click sound
