@@ -1,47 +1,47 @@
 let canvas = document.getElementById('canvas');
-let ctx = canvas.getContext('2d');      // by calling method getContent we have access for drawing
+let ctx = canvas.getContext('2d');
 let button = document.querySelector('.button-15');
-//console.log(button);
+
 
 button.addEventListener('click', function () {
 
-    //create arr of elements
+
     let arr15 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
-    //sort the elements of array the numbers show up randomly
+
     for (let i = 0; i < 10; i++) {
         arr15.sort(() => Math.random() - 0.5);
-        //console.log(arr15);
+
     }
 
-    // create a function which draw a square
-    let drawSquare = function (x, y, val) {   // x and y - coordinates (top-left) value is num of the square
-        ctx.fillStyle = "black";      // color of square will be black
-        ctx.fillRect(x, y, 100, 100);  // create a square 100 by 100
 
-        if (val === 0) {                  // one of 16 square must be white(empty)
+    let drawSquare = function (x, y, val) {
+        ctx.fillStyle = "black";
+        ctx.fillRect(x, y, 100, 100);
+
+        if (val === 0) {
             ctx.fillStyle = "white";
         } else {
-            ctx.fillStyle = "teal";       // rest is teal
+            ctx.fillStyle = "teal";
         }
 
-        ctx.fillRect(x + 5, y + 5, 90, 90);    // create another square 90 by 90
+        ctx.fillRect(x + 5, y + 5, 90, 90);
 
-        ctx.font = "60px Arial";    // create a number's font 
-        ctx.fillStyle = "white";    // numbers will be white
+        ctx.font = "60px Arial";
+        ctx.fillStyle = "white";
 
         if (val < 10) {
-            ctx.fillText(val, x + 35, y + 70);    //centered number inside the square (only for single digits)
+            ctx.fillText(val, x + 35, y + 70);
         } else {
-            ctx.fillText(val, x + 15, y + 70)     //centered double digits
+            ctx.fillText(val, x + 15, y + 70)
         }
     }
-    //drawSquare(200, 200, 12);
 
-    let drawTag = function (position, val) {   // create a function for square position
-        switch (position) {                    // depends of the position move square
-            case 0:                             // if position 0:
-                drawSquare(0, 0, val)           // pass the coordinate to 0 0 (left-bottom)
+
+    let drawTag = function (position, val) {
+        switch (position) {
+            case 0:
+                drawSquare(0, 0, val)
                 break;
 
             case 1:
@@ -105,13 +105,13 @@ button.addEventListener('click', function () {
                 break;
         }
     }
-    //drawTag(15, 7);   // check position of square with value of 7
 
-    for (let i = 0; i <= 15; i++) {   //iterate through to address all squares in corresponding position
+
+    for (let i = 0; i <= 15; i++) {
         drawTag(i, arr15[i]);
     }
 
-    let checkPlace = function (evX) {     //return place's number in x coordinate  
+    let checkPlace = function (evX) {
         if (evX < 110) {
             return 1;
         }
@@ -131,12 +131,12 @@ button.addEventListener('click', function () {
 
     let clickPos;
     canvas.addEventListener('click', function (e) {
-        //console.log(e);
-        // check the offsetX and offsetY in console (click's coordinates)
-        if (e.offsetY < 110) {                    //check click coordinate
-            //console.log('row1');           // check click (must click row1 only)
-            // find out what place being clicked for row1 (4 places in row)
-            // covered all rows thats's why  i created a function above
+
+
+        if (e.offsetY < 110) {
+
+
+
             let place = checkPlace(e.offsetX);
 
             switch (place) {
@@ -161,9 +161,9 @@ button.addEventListener('click', function () {
         if (e.offsetY > 110 && e.offsetY < 210) {
             let place = checkPlace(e.offsetX)
 
-            switch (place) {         // find out what place being clicked  for row2
+            switch (place) {
                 case 1:
-                    clickPos = 4;    // assign a position 4 
+                    clickPos = 4;
                     break;
 
                 case 2:
@@ -183,7 +183,7 @@ button.addEventListener('click', function () {
         if (e.offsetY > 210 && e.offsetY < 310) {
             let place = checkPlace(e.offsetX)
 
-            switch (place) {                       // find out what place being clicked  for row3
+            switch (place) {
                 case 1:
                     clickPos = 8;
                     break;
@@ -205,7 +205,7 @@ button.addEventListener('click', function () {
         if (e.offsetY > 310 && e.offsetY < 410) {
             let place = checkPlace(e.offsetX)
 
-            switch (place) {                   // find out what place being clicked for row4
+            switch (place) {
                 case 1:
                     clickPos = 12;
                     break;
@@ -225,44 +225,44 @@ button.addEventListener('click', function () {
 
         }
 
-        //console.log(clickPos);
 
-        // need to find out if there is empty brick around clicked brick
-        // if so we need to swap them
-        //statement condition check if empty bricks located  on the ABOVE position of clicked brick
+
+
+
+
         if (arr15[clickPos - 4] === 0) {
             arr15[clickPos - 4] = arr15[clickPos];
             arr15[clickPos] = 0;
         }
 
-        for (let i = 0; i <= 15; i++) {   //iterate through to address all squares in corresponding position
+        for (let i = 0; i <= 15; i++) {
             drawTag(i, arr15[i]);
         }
-        //statement condition check if empty bricks located  on the BOTTOM position of clicked brick
+
         if (arr15[clickPos + 4] === 0) {
             arr15[clickPos + 4] = arr15[clickPos];
             arr15[clickPos] = 0;
 
         }
-        for (let i = 0; i <= 15; i++) {   //iterate through to address all squares in corresponding position
+        for (let i = 0; i <= 15; i++) {
             drawTag(i, arr15[i]);
         }
-        //statement condition check if empty bricks located  on the LEFT position of clicked brick
+
         if (arr15[clickPos - 1] === 0) {
             arr15[clickPos - 1] = arr15[clickPos];
             arr15[clickPos] = 0;
         }
 
-        for (let i = 0; i <= 15; i++) {   //iterate through to address all squares in corresponding position
+        for (let i = 0; i <= 15; i++) {
             drawTag(i, arr15[i]);
         }
-        //statement condition check if empty bricks located  on the RIGHT position of clicked brick
+
         if (arr15[clickPos + 1] === 0) {
             arr15[clickPos + 1] = arr15[clickPos];
             arr15[clickPos] = 0;
         }
 
-        for (let i = 0; i <= 15; i++) {   //iterate through to address all squares in corresponding position
+        for (let i = 0; i <= 15; i++) {
             drawTag(i, arr15[i]);
         }
 
@@ -289,6 +289,10 @@ function updateCountDown() {
     countDownEl.innerHTML = minutes + ':' + seconds;
     time--;
 
+    if (time <= 60) {
+        countDownEl.style.color = 'orange';
+    }
+
     if (time < 0) {
         countDownEl.innerHTML = 'Game Over!!!';
         countDownEl.style.color = 'red';
@@ -296,7 +300,7 @@ function updateCountDown() {
 
 }
 let clearT;
-//console.log(clearT);
+
 
 function refresh() {
     clearInterval(clearT);
@@ -306,10 +310,9 @@ function refresh() {
 
 
 
-//Click sound 
-//let sound = new sound();
+let sound = new sound();
 
-//sound.src = "audio/Mouse-Click-00-m-FesliyanStudios.com.mp3";
+sound.src = "audio/samplerButton.wav";
 
 
 
